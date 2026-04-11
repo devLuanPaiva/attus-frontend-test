@@ -1,0 +1,29 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Giana Sandrini",
+            "email": "giana@attus.ai"
+        },
+        {
+            "id": 2,
+            "name": "Carlos Mendes",
+            "email": "carlos.mendes@attus.ai"
+        },
+        {
+            "id": 3,
+            "name": "Fernanda Lima",
+            "email": "fernanda.lima@attus.ai"
+        },
+        {
+            "id": 4,
+            "name": "Rafael Souza",
+            "email": "rafael.souza@attus.ai"
+        },
+        {
+            "id": 5,
+            "name": "Patrícia Oliveira",
+            "email": "patricia.oliveira@attus.ai"
+        }
+    ]
+}
