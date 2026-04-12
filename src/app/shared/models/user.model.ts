@@ -20,3 +20,14 @@ export interface UserFormData {
 export interface UserDialogData {
     user: User | null;
 }
+
+export interface UserPageParams {
+    page: number;
+    limit: number;
+    filter: string;
+}
+
+export interface UserPageResult {
+    users: User[];
+    total: number;
+}

@@ -21,8 +21,10 @@ import {
   selectFilteredUsers,
   selectLoading,
   selectError,
+  selectPaginationVm,
 } from '../../store/user.selectors';
 import { User, UserDialogData } from '../../../../shared/models/user.model';
+import { UserPaginatorComponent } from '../user-paginator/user-paginator';
 
 @Component({
   selector: 'app-user-list',
@@ -35,6 +37,7 @@ import { User, UserDialogData } from '../../../../shared/models/user.model';
     MatButtonModule,
     MatTooltipModule,
     UserCardComponent,
+    UserPaginatorComponent,
   ],
   templateUrl: './user-list.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +49,7 @@ export class UserListComponent implements OnInit {
   readonly users$ = this.store.select(selectFilteredUsers);
   readonly loading$ = this.store.select(selectLoading);
   readonly error$ = this.store.select(selectError);
+  readonly paginationVm$ = this.store.select(selectPaginationVm);
 
   readonly searchControl = new FormControl<string>('', { nonNullable: true });
 
@@ -59,6 +63,10 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(UserActions.loadUsers());
+  }
+
+  onPageChange(page: number): void {
+    this.store.dispatch(UserActions.setPage({ page }));
   }
 
   openCreateDialog(): void {
