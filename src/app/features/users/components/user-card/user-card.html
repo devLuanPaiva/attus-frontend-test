@@ -1,19 +1,19 @@
 <div
-    class="flex items-center justify-between px-4 py-3 bg-white rounded border border-gray-200 hover:bg-gray-50 transition-colors duration-150">
+    class="flex items-center justify-between px-4 py-3 bg-white rounded border border-zinc-200 hover:bg-zinc-50 transition-colors duration-150">
     <div class="flex items-center gap-3 min-w-0">
-        <mat-icon class="text-gray-400 shrink-0">account_circle</mat-icon>
-        <span class="font-semibold text-gray-800 text-sm truncate">{{
+        <mat-icon class="text-zinc-400 shrink-0">account_circle</mat-icon>
+        <span class="font-semibold text-zinc-800 text-sm truncate">{{
             user().name }}</span>
     </div>
 
     <div class="flex items-center gap-4">
-        <span class="text-sm text-gray-500 hidden sm:block">{{ user().email
+        <span class="text-sm text-zinc-500 hidden sm:block">{{ user().email
             }}</span>
         <button
             mat-icon-button
             matTooltip="Editar usuário"
             (click)="onEdit()"
-            class="text-gray-400 hover:text-gray-700">
+            class="text-zinc-400 hover:text-zinc-700">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
