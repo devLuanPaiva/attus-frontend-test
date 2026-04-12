@@ -1,0 +1,69 @@
+@if (vm().total > 0) {
+  <div class="flex items-center justify-between px-1 pt-3 pb-1 border-t border-zinc-100 mt-2">
+
+    <span class="text-xs text-zinc-400 select-none">
+      {{ startItem() }}–{{ endItem() }} de {{ vm().total }} usuários
+    </span>
+
+    <div class="flex items-center gap-1">
+
+      <button
+        mat-icon-button
+        class="w-8! h-8! p-0! flex items-center justify-center"
+        matTooltip="Primeira página"
+        [disabled]="vm().page === 1"
+        (click)="goTo(1)"
+      >
+        <mat-icon class="text-base m-0! leading-none! ">first_page</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        class="w-8! h-8! p-0! flex items-center justify-center"
+        matTooltip="Página anterior"
+        [disabled]="vm().page === 1"
+        (click)="goTo(vm().page - 1)"
+      >
+        <mat-icon class="text-base m-0! leading-none! ">chevron_left</mat-icon>
+      </button>
+
+      @for (p of visiblePages(); track p) {
+        @if (p === -1) {
+          <span class="w-8 text-center text-black text-sm select-none">…</span>
+        } @else {
+          <button
+            mat-icon-button
+            class="w-8! h-8! p-0! text-xs! font-medium transition-colors text-black flex items-center justify-center"
+            [class.!bg-blue-600]="p === vm().page"
+            [class.!text-white]="p === vm().page"
+            [class.rounded-full]="p === vm().page"
+            (click)="goTo(p)"
+          >
+            {{ p }}
+          </button>
+        }
+      }
+
+      <button
+        mat-icon-button
+        class="w-8! h-8! p-0! flex items-center justify-center"
+        matTooltip="Próxima página"
+        [disabled]="vm().page === vm().totalPages"
+        (click)="goTo(vm().page + 1)"
+      >
+        <mat-icon class="text-base m-0! leading-none! ">chevron_right</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        class="w-8! h-8! p-0! flex items-center justify-center text-center"
+        matTooltip="Última página"
+        [disabled]="vm().page === vm().totalPages"
+        (click)="goTo(vm().totalPages)"
+      >
+        <mat-icon class="text-base m-0! leading-none! ">last_page</mat-icon>
+      </button>
+
+    </div>
+  </div>
+}
