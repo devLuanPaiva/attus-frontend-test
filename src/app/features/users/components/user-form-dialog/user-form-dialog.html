@@ -1,0 +1,102 @@
+<div class="w-full mx-auto ">
+    <h2 mat-dialog-title
+        class="text-base font-medium text-zinc-800 px-6 pt-5 pb-0">
+        {{ isEditMode ? 'Editar usuário' : 'Adicionar novo usuário' }}
+    </h2>
+
+    <mat-dialog-content class="px-6 pt-4 pb-2 flex flex-col space-y-6 w-full">
+
+        <div class="flex flex-col gap-1">
+            <input
+                formControlName="email"
+                [formControl]="email"
+                type="email"
+                placeholder="Usuário (e-mail) *"
+                class="border-0 border-b border-zinc-300 focus:border-blue-500 outline-none text-sm py-1 w-full transition-colors"
+                [class.border-red-400]="email.invalid && email.touched" />
+            @if (email.touched && email.hasError('required')) {
+            <span class="text-xs text-red-500">E-mail é obrigatório</span>
+            } @else if (email.touched && email.hasError('email')) {
+            <span class="text-xs text-red-500">Informe um e-mail válido</span>
+            }
+        </div>
+
+        <div class="flex flex-col gap-1">
+            <input
+                [formControl]="name"
+                type="text"
+                placeholder="Nome completo *"
+                class="border-0 border-b border-zinc-300 focus:border-blue-500 outline-none text-sm py-1 w-full transition-colors"
+                [class.border-red-400]="name.invalid && name.touched" />
+            @if (name.touched && name.hasError('required')) {
+            <span class="text-xs text-red-500">Nome é obrigatório</span>
+            } @else if (name.touched && name.hasError('minlength')) {
+            <span class="text-xs text-red-500">Nome deve ter ao menos 3
+                caracteres</span>
+            }
+        </div>
+
+        <div class="flex items-start gap-4">
+
+            <div class="flex flex-col gap-1 flex-1">
+                <input
+                    [formControl]="cpf"
+                    [appInputMask]="'cpf'"
+                    type="text"
+                    placeholder="CPF *"
+                    class="border-0 border-b border-zinc-300 focus:border-blue-500 outline-none text-sm py-1 w-full transition-colors"
+                    [class.border-red-400]="cpf.invalid && cpf.touched" />
+                @if (cpf.touched && cpf.hasError('required')) {
+                <span class="text-xs text-red-500">CPF é obrigatório</span>
+                } @else if (cpf.touched && cpf.hasError('cpfInvalid')) {
+                <span class="text-xs text-red-500">CPF inválido</span>
+                }
+            </div>
+
+            <div class="flex flex-col gap-1 flex-1">
+                <input
+                    [formControl]="phone"
+                    [appInputMask]="'phone'"
+                    type="text"
+                    placeholder="Número do telefone *"
+                    class="border-0 border-b border-zinc-300 focus:border-blue-500 outline-none text-sm py-1 w-full transition-colors"
+                    [class.border-red-400]="phone.invalid && phone.touched" />
+                @if (phone.touched && phone.hasError('required')) {
+                <span class="text-xs text-red-500">Telefone é obrigatório</span>
+                } @else if (phone.touched && phone.hasError('minlength')) {
+                <span class="text-xs text-red-500">Telefone inválido</span>
+                }
+            </div>
+
+            <div class="flex flex-col justify-end min-w-32.5">
+                <mat-select
+                    [formControl]="phoneType"
+                    class="text-sm border-b border-zinc-300">
+                    @for (type of phoneTypes; track type) {
+                    <mat-option [value]="type">{{ type }}</mat-option>
+                    }
+                </mat-select>
+            </div>
+        </div>
+
+        <p class="text-xs text-blue-600 italic">
+            O usuário receberá uma senha provisória para acesso ao sistema por
+            SMS.
+        </p>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="px-6 pb-5 pt-2">
+        <button
+            mat-flat-button
+            color="primary"
+            [disabled]="form.invalid || saving()"
+            (click)="onSave()"
+            class="text-sm px-6">
+            @if (saving()) {
+            <mat-spinner diameter="16" class="inline-block mr-2" />
+            }
+            SALVAR
+        </button>
+    </mat-dialog-actions>
+</div>
