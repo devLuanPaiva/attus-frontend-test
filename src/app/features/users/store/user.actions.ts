@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { User } from '../../../shared/models/user.model';
+import { User, UserFormData } from '../../../shared/models/user.model';
 
 export const UserActions = createActionGroup({
     source: 'Users',
@@ -8,5 +8,14 @@ export const UserActions = createActionGroup({
         'Load Users Success': props<{ users: User[] }>(),
         'Load Users Failure': props<{ error: string }>(),
         'Set Filter': props<{ filter: string }>(),
+
+        'Create User': props<{ data: UserFormData }>(),
+        'Create User Success': props<{ user: User }>(),
+        'Create User Failure': props<{ error: string }>(),
+
+     
+        'Update User': props<{ id: number; data: UserFormData }>(),
+        'Update User Success': props<{ user: User }>(),
+        'Update User Failure': props<{ error: string }>(),
     },
 });

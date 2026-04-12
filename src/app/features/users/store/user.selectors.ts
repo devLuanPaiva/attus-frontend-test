@@ -6,6 +6,7 @@ export const {
     selectFilter,
     selectLoading,
     selectError,
+    selectSaving,
 } = userFeature;
 
 export const selectFilteredUsers = createSelector(
