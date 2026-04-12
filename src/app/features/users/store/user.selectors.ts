@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { userFeature } from './user.reducer';
+import { PAGE_SIZE, userFeature } from './user.reducer';
 
 export const {
     selectUsers,
@@ -7,7 +7,21 @@ export const {
     selectLoading,
     selectError,
     selectSaving,
+    selectTotal,
+    selectPage,
 } = userFeature;
+
+export const selectTotalPages = createSelector(
+    selectTotal,
+    (total) => Math.ceil(total / PAGE_SIZE)
+);
+
+export const selectPaginationVm = createSelector(
+    selectPage,
+    selectTotal,
+    selectTotalPages,
+    (page, total, totalPages) => ({ page, total, totalPages, pageSize: PAGE_SIZE })
+);
 
 export const selectFilteredUsers = createSelector(
     selectUsers,
