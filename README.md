@@ -51,7 +51,7 @@ Este é um projeto de teste que demonstra conhecimentos práticos em desenvolvim
 1. **Clone o repositório**
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/devLuanPaiva/attus-frontend-test.git
 cd attus-frontend-test
 ```
 
@@ -102,6 +102,8 @@ npm run build
 ## 📂 Estrutura do Projeto
 
 ```
+respostas-teste-pratico/       # Respostas das questões do documento
+|
 src/
 ├── app/
 │   ├── core/
